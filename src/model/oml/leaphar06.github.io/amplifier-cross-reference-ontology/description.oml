@@ -1,0 +1,182 @@
+description <https://leaphar06.github.io/amplifier-cross-reference-ontology/description#> as amplifier-desc {
+    uses <https://leaphar06.github.io/amplifier-cross-reference-ontology/vocabulary#> as amplifier
+
+    instance HSAMPS_OPAMP : amplifier:ProductLine [
+        amplifier:productLineName "HSAMPS-OPAMP"
+    ]
+    instance HSAMPS : amplifier:ProductLine [
+        amplifier:productLineName "HSAMPS"
+        amplifier:hasSubLine HSAMPS_OPAMP
+    ]
+
+    instance ADI : amplifier:CompetitorVendor [ amplifier:vendorName "Analog Devices" ]
+    instance LinearTech : amplifier:CompetitorVendor [ amplifier:vendorName "Linear Technology" ]
+
+    instance LT1360 : amplifier:CompetitorAmplifier [
+        amplifier:partNumber "LT1360"
+        amplifier:belongsToVendor LinearTech
+    ]
+    instance LT1220 : amplifier:CompetitorAmplifier [
+        amplifier:partNumber "LT1220"
+        amplifier:belongsToVendor LinearTech
+    ]
+    instance AD8000 : amplifier:CompetitorAmplifier [
+        amplifier:partNumber "AD8000"
+        amplifier:belongsToVendor ADI
+    ]
+    instance AD8001 : amplifier:CompetitorAmplifier [
+        amplifier:partNumber "AD8001"
+        amplifier:belongsToVendor ADI
+    ]
+
+    instance gbwCrit : amplifier:GBWCriterion
+    instance supplyCrit : amplifier:SupplyVoltageCriterion
+    instance packageCrit : amplifier:PackageCriterion
+    instance slewCrit : amplifier:SlewRateCriterion
+    instance biasCrit : amplifier:InputBiasCurrentCriterion
+    instance noiseCrit : amplifier:NoiseDensityCriterion
+    instance tempCrit : amplifier:TempGradeCriterion
+
+    instance policy1 : amplifier:ThresholdPolicy [ amplifier:policyName "HSAMPS default 5% tolerance" ]
+
+    instance pm1 : amplifier:ParameterMatch [
+        amplifier:comparesTo LT1360
+        amplifier:evaluatesCriterion gbwCrit
+        amplifier:matches true
+        amplifier:governedBy policy1
+    ]
+    instance pm2 : amplifier:ParameterMatch [
+        amplifier:comparesTo LT1360
+        amplifier:evaluatesCriterion supplyCrit
+        amplifier:matches true
+        amplifier:governedBy policy1
+    ]
+    instance pm3 : amplifier:ParameterMatch [
+        amplifier:comparesTo LT1360
+        amplifier:evaluatesCriterion packageCrit
+        amplifier:matches false
+        amplifier:governedBy policy1
+    ]
+    instance pm4 : amplifier:ParameterMatch [
+        amplifier:comparesTo AD8000
+        amplifier:evaluatesCriterion slewCrit
+        amplifier:matches true
+    ]
+    instance pm5 : amplifier:ParameterMatch [
+        amplifier:comparesTo AD8000
+        amplifier:evaluatesCriterion biasCrit
+        amplifier:matches false
+    ]
+    instance pm6 : amplifier:ParameterMatch [
+        amplifier:comparesTo LT1220
+        amplifier:evaluatesCriterion gbwCrit
+        amplifier:matches true
+    ]
+    instance pm7 : amplifier:ParameterMatch [
+        amplifier:comparesTo LT1220
+        amplifier:evaluatesCriterion supplyCrit
+        amplifier:matches true
+    ]
+    instance pm8 : amplifier:ParameterMatch [
+        amplifier:comparesTo LT1220
+        amplifier:evaluatesCriterion packageCrit
+        amplifier:matches false
+    ]
+    instance pm9 : amplifier:ParameterMatch [
+        amplifier:comparesTo LT1220
+        amplifier:evaluatesCriterion slewCrit
+        amplifier:matches true
+    ]
+    instance pm10 : amplifier:ParameterMatch [
+        amplifier:comparesTo LT1220
+        amplifier:evaluatesCriterion biasCrit
+        amplifier:matches true
+    ]
+    instance pm11 : amplifier:ParameterMatch [
+        amplifier:comparesTo LT1220
+        amplifier:evaluatesCriterion noiseCrit
+        amplifier:matches false
+    ]
+    instance pm12 : amplifier:ParameterMatch [
+        amplifier:comparesTo LT1220
+        amplifier:evaluatesCriterion tempCrit
+        amplifier:matches true
+    ]
+
+    instance pm13 : amplifier:ParameterMatch [
+        amplifier:comparesTo AD8001
+        amplifier:evaluatesCriterion gbwCrit
+        amplifier:matches true
+    ]
+    instance pm14 : amplifier:ParameterMatch [
+        amplifier:comparesTo AD8001
+        amplifier:evaluatesCriterion supplyCrit
+        amplifier:matches false
+    ]
+    instance pm15 : amplifier:ParameterMatch [
+        amplifier:comparesTo AD8001
+        amplifier:evaluatesCriterion packageCrit
+        amplifier:matches true
+    ]
+    instance pm16 : amplifier:ParameterMatch [
+        amplifier:comparesTo AD8001
+        amplifier:evaluatesCriterion slewCrit
+        amplifier:matches true
+    ]
+    instance pm17 : amplifier:ParameterMatch [
+        amplifier:comparesTo AD8001
+        amplifier:evaluatesCriterion biasCrit
+        amplifier:matches false
+    ]
+    instance pm18 : amplifier:ParameterMatch [
+        amplifier:comparesTo AD8001
+        amplifier:evaluatesCriterion noiseCrit
+        amplifier:matches true
+    ]
+    instance pm19 : amplifier:ParameterMatch [
+        amplifier:comparesTo AD8001
+        amplifier:evaluatesCriterion tempCrit
+        amplifier:matches true
+    ]
+    instance OPA847 : amplifier:HighSpeedAmplifier [
+        amplifier:partNumber "OPA847"
+        amplifier:belongsToLine HSAMPS
+        amplifier:hasParameterMatch pm1
+        amplifier:hasParameterMatch pm2
+        amplifier:hasParameterMatch pm3
+    ]
+    instance OPA842 : amplifier:HighSpeedAmplifier [
+        amplifier:partNumber "OPA842"
+        amplifier:belongsToLine HSAMPS
+        amplifier:hasParameterMatch pm4
+        amplifier:hasParameterMatch pm5
+    ]
+    
+    instance OPA843 : amplifier:HighSpeedAmplifier [
+        amplifier:partNumber "OPA843"
+        amplifier:belongsToLine HSAMPS
+        amplifier:hasParameterMatch pm6
+        amplifier:hasParameterMatch pm7
+        amplifier:hasParameterMatch pm8
+        amplifier:hasParameterMatch pm9
+        amplifier:hasParameterMatch pm10
+        amplifier:hasParameterMatch pm11
+        amplifier:hasParameterMatch pm12
+    ]
+    instance LMH6624 : amplifier:HighSpeedAmplifier [
+        amplifier:partNumber "LMH6624"
+        amplifier:belongsToLine HSAMPS_OPAMP
+        amplifier:hasParameterMatch pm13
+        amplifier:hasParameterMatch pm14
+        amplifier:hasParameterMatch pm15
+        amplifier:hasParameterMatch pm16
+        amplifier:hasParameterMatch pm17
+        amplifier:hasParameterMatch pm18
+        amplifier:hasParameterMatch pm19
+    ]
+
+    instance gap1 : amplifier:CoverageGap [
+        amplifier:gapCount 1
+        amplifier:derivedFrom pm3
+    ]
+}

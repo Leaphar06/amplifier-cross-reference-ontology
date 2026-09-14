@@ -1,0 +1,168 @@
+@dc:title "Amplifier cross-reference vocabulary"
+@dc:description "Concepts and relations for classifying TI amplifier replacements for competitor parts."
+vocabulary <https://leaphar06.github.io/amplifier-cross-reference-ontology/vocabulary#> as amplifier {
+    extends <http://purl.org/dc/elements/1.1/> as dc
+    extends <http://www.w3.org/2001/XMLSchema#> as xsd
+
+    @dc:description "A physical amplifier part, TI or competitor."
+    concept Part
+
+    @dc:description "The manufacturer part number."
+    scalar property partNumber [
+        domain Part
+        range xsd:string
+        functional
+    ]
+
+    @dc:description "A TI high-speed amplifier part."
+    concept HighSpeedAmplifier < Part [
+        restricts hasParameterMatch to min 7
+    ]
+
+    @dc:description "A competitor's amplifier part being cross-referenced."
+    concept CompetitorAmplifier < Part
+
+    @dc:description "The company that makes a competitor part."
+    concept CompetitorVendor
+
+    scalar property vendorName [
+        domain CompetitorVendor
+        range xsd:string
+        functional
+    ]
+
+    @dc:description "A TI product line that owns a set of amplifiers."
+    concept ProductLine 
+
+    scalar property productLineName [
+        domain ProductLine
+        range xsd:string
+        functional
+    ]
+
+    @dc:description "One of the matching criteria compared between parts."
+    concept Criterion
+
+    concept GBWCriterion < Criterion
+    concept SupplyVoltageCriterion < Criterion
+    concept PackageCriterion < Criterion
+    concept SlewRateCriterion < Criterion
+    concept InputBiasCurrentCriterion < Criterion
+    concept NoiseDensityCriterion < Criterion
+    concept TempGradeCriterion < Criterion
+
+    @dc:description "A single per-parameter comparison result against a competitor part."
+    concept ParameterMatch
+
+    @dc:description "Whether this specific parameter matched (true) or blocked a full match (false)."
+    scalar property matches [
+        domain ParameterMatch
+        range xsd:boolean
+        functional
+    ]
+
+    @dc:description "A ParameterMatch where the parameter matched."
+    concept FullParameterMatch < ParameterMatch [
+        restricts matches to true
+    ]
+
+    @dc:description "Full/drop-in: every ParameterMatch for this part is a FullParameterMatch."
+    concept FullMatchReplacement = HighSpeedAmplifier [
+        restricts all hasParameterMatch to FullParameterMatch
+    ]
+
+    @dc:description "Same functionality, but at least one parameter blocks a full match."
+    concept PartialMatchReplacement < HighSpeedAmplifier
+
+    @dc:description "No viable TI replacement exists."
+    concept NoMatchReplacement < HighSpeedAmplifier
+
+    @dc:description "A systematic partial/no-match pattern against a vendor's catalog, for roadmap prioritization."
+    concept CoverageGap
+
+    scalar property gapCount [
+        domain CoverageGap
+        range xsd:integer
+        functional
+    ]
+
+    @dc:description "The policy that governs an ambiguous 'close enough' threshold call."
+    concept ThresholdPolicy
+
+    scalar property policyName [
+        domain ThresholdPolicy
+        range xsd:string
+        functional
+    ]
+
+    @dc:description "Links a ParameterMatch to the competitor part it was compared against."
+    relation comparesTo [
+        from ParameterMatch
+        to CompetitorAmplifier
+        reverse comparedBy
+        functional
+    ]
+
+    @dc:description "Links a TI part to one of its per-parameter comparison results."
+    relation hasParameterMatch [
+        from HighSpeedAmplifier
+        to ParameterMatch
+        reverse isParameterMatchOf
+    ]
+
+    @dc:description "Which criterion a ParameterMatch evaluates."
+    relation evaluatesCriterion [
+        from ParameterMatch
+        to Criterion
+        reverse isEvaluatedBy
+        functional
+    ]
+
+    @dc:description "Indicates a TI part replaces a competitor part overall."
+    relation replaces [
+        from HighSpeedAmplifier
+        to CompetitorAmplifier
+        reverse isReplacedBy
+        irreflexive
+        asymmetric
+    ]
+
+    @dc:description "The vendor that makes a competitor part."
+    relation belongsToVendor [
+        from CompetitorAmplifier
+        to CompetitorVendor
+        reverse hasCompetitorPart
+        functional
+    ]
+
+    @dc:description "The TI product line an amplifier belongs to."
+    relation belongsToLine [
+        from HighSpeedAmplifier
+        to ProductLine
+        reverse hasAmplifier
+        functional
+    ]
+
+    @dc:description "A product line's sub-line, for recursive roadmap grouping."
+    relation hasSubLine [
+        from ProductLine
+        to ProductLine
+        reverse isSubLineOf
+        irreflexive
+    ]
+
+    @dc:description "The ParameterMatch evidence a CoverageGap is derived from."
+    relation derivedFrom [
+        from CoverageGap
+        to ParameterMatch
+        reverse informsGap
+    ]
+
+    @dc:description "The threshold policy governing a ParameterMatch's close-enough call."
+    relation governedBy [
+        from ParameterMatch
+        to ThresholdPolicy
+        reverse governs
+        functional
+    ]
+}

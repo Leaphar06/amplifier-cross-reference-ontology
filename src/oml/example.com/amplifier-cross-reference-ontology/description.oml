@@ -1,0 +1,16 @@
+@dc:title "Amplifier Cross Reference Ontology Description"
+@dc:description "The Amplifier Cross Reference Ontology ontologies."
+description <https://example.com/amplifier-cross-reference-ontology/description#> as amplifiercrossreferenceontology-desc {
+    uses <http://purl.org/dc/elements/1.1/> as dc
+    uses <https://example.com/amplifier-cross-reference-ontology/vocabulary#> as amplifiercrossreferenceontology
+
+    @dc:description "An example instance — replace it with your own data."
+    instance ComponentA : amplifiercrossreferenceontology:Component [
+        amplifiercrossreferenceontology:name "Component A"
+    ]
+
+    instance ComponentB : amplifiercrossreferenceontology:Component [
+        amplifiercrossreferenceontology:name "Component B"
+        amplifiercrossreferenceontology:dependsOn ComponentA
+    ]
+}
