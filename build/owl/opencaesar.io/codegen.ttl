@@ -1,0 +1,81 @@
+@prefix codegen: <http://opencaesar.io/codegen#>.
+@prefix oml: <http://opencaesar.io/oml#>.
+@prefix dc: <http://purl.org/dc/elements/1.1/>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+
+<http://opencaesar.io/codegen> a owl:Ontology;
+    oml:type oml:Vocabulary;
+    oml:namespace <http://opencaesar.io/codegen#>;
+    oml:prefix "codegen";
+    dc:creator "openCAESAR";
+    dc:rights "Copyright 2026 openCAESAR.";
+    dc:source "http://www.opencaesar.io/";
+    dc:description "The Codegen vocabulary defines concepts and relations for configuring template-based code generation from models.";
+    dc:title "Codegen";
+    owl:imports <http://purl.org/dc/elements/1.1>, <http://opencaesar.io/oml>.
+codegen:Config a owl:Class;
+    oml:type oml:Concept;
+    dc:description "A configuration that binds a code-generation specification to a context.".
+codegen:spec a owl:ObjectProperty;
+    oml:type oml:UnreifiedRelation;
+    dc:description "Associates a Config with the Spec it configures.";
+    rdfs:domain codegen:Config;
+    rdfs:range codegen:Spec.
+codegen:context a owl:DatatypeProperty;
+    dc:description "The context expression in which the configuration applies.";
+    rdfs:domain codegen:Config;
+    rdfs:range xsd:string.
+codegen:binding a owl:ObjectProperty;
+    oml:type oml:UnreifiedRelation;
+    dc:description "Associates a Config with a parameter Binding.";
+    rdfs:domain codegen:Config;
+    rdfs:range codegen:Binding.
+codegen:Binding a owl:Class;
+    oml:type oml:Concept;
+    dc:description "A key/value binding that supplies a value for a Spec parameter.".
+codegen:key a owl:DatatypeProperty;
+    dc:description "The name of the parameter being bound.";
+    rdfs:domain codegen:Binding;
+    rdfs:range xsd:string.
+codegen:value a owl:DatatypeProperty;
+    dc:description "The value assigned to the bound parameter.";
+    rdfs:domain codegen:Binding;
+    rdfs:range xsd:string.
+codegen:Spec a owl:Class;
+    oml:type oml:Concept;
+    dc:description "A specification of how to generate code from a model construct.".
+codegen:construct a owl:DatatypeProperty;
+    dc:description "The model construct that the specification targets.";
+    rdfs:domain codegen:Spec;
+    rdfs:range xsd:string.
+codegen:parameter a owl:DatatypeProperty;
+    dc:description "A parameter declared by the specification.";
+    rdfs:domain codegen:Spec;
+    rdfs:range xsd:string.
+codegen:Template a owl:Class;
+    oml:type oml:Concept;
+    dc:description "A code template whose body is expanded during generation.".
+codegen:body a owl:DatatypeProperty;
+    dc:description "The textual body of the template.";
+    rdfs:domain codegen:Template;
+    rdfs:range xsd:string.
+codegen:File a owl:Class;
+    oml:type oml:Concept;
+    dc:description "A generated output file produced from a template.".
+codegen:path a owl:DatatypeProperty;
+    dc:description "The output path of the generated file.";
+    rdfs:domain codegen:File;
+    rdfs:range xsd:string.
+codegen:template a owl:ObjectProperty;
+    oml:type oml:UnreifiedRelation;
+    dc:description "Associates a File with the Template used to generate it.";
+    rdfs:domain codegen:File;
+    rdfs:range codegen:Template.
+codegen:root a owl:ObjectProperty;
+    oml:type oml:UnreifiedRelation;
+    dc:description "The root model element from which the file is generated.";
+    rdfs:domain codegen:File;
+    rdfs:range owl:Thing.

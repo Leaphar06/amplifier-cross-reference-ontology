@@ -1,0 +1,13 @@
+@prefix oml: <http://opencaesar.io/oml#>.
+@prefix dc: <http://purl.org/dc/elements/1.1/>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix amplifier-dbundle: <https://leaphar06.github.io/amplifier-cross-reference-ontology/description-bundle#>.
+
+<https://leaphar06.github.io/amplifier-cross-reference-ontology/description-bundle> a owl:Ontology;
+    oml:type oml:DescriptionBundle;
+    oml:namespace <https://leaphar06.github.io/amplifier-cross-reference-ontology/description-bundle#>;
+    oml:prefix "amplifier-dbundle";
+    dc:title "Amplifier description bundle";
+    dc:description "Packages the amplifier instance data for reasoning against the closed vocabulary bundle.";
+    owl:imports <http://purl.org/dc/elements/1.1>, <https://leaphar06.github.io/amplifier-cross-reference-ontology/vocabulary-bundle>, <https://leaphar06.github.io/amplifier-cross-reference-ontology/description>, <http://opencaesar.io/oml>.

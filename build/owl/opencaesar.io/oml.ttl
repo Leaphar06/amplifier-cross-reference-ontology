@@ -1,0 +1,109 @@
+@prefix oml: <http://opencaesar.io/oml#>.
+@prefix dc: <http://purl.org/dc/elements/1.1/>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+
+<http://opencaesar.io/oml> a owl:Ontology;
+    oml:type oml:Vocabulary;
+    oml:namespace <http://opencaesar.io/oml#>;
+    oml:prefix "oml";
+    dc:creator "openCAESAR";
+    dc:rights "Copyright 2026 openCAESAR.";
+    dc:source "http://www.opencaesar.io/";
+    dc:description "The OML core vocabulary that every OML ontology imports when lowered to OWL; it declares the metaclasses, annotation properties, relations, and scalar properties emitted by the OWL mapper.";
+    dc:title "OML";
+    owl:imports <http://purl.org/dc/elements/1.1>.
+oml:type a owl:AnnotationProperty;
+    dc:description "Marks the OML metaclass / instance type of an element.".
+oml:namespace a owl:AnnotationProperty;
+    dc:description "The namespace IRI of an ontology.".
+oml:prefix a owl:AnnotationProperty;
+    dc:description "The namespace prefix of an ontology.".
+oml:quantity a owl:AnnotationProperty;
+    dc:description "Associates a quantity property with its quantity kind.".
+oml:labelProperty a owl:AnnotationProperty;
+    dc:description "Designates the property whose value provides the human-readable label for instances of a type.".
+oml:contextOntology a owl:AnnotationProperty;
+    dc:description "Designates the context ontology used to resolve references (e.g., for rendering and SHACL validation).".
+oml:localReference a owl:AnnotationProperty;
+    dc:description "Boolean flag marking a table-editor reference as resolvable within the local ontology only.".
+oml:Aspect a owl:Class;
+    oml:type oml:Concept;
+    dc:description "The metaclass of an OML aspect (an abstract classifier).".
+oml:Concept a owl:Class;
+    oml:type oml:Concept;
+    dc:description "The metaclass of an OML concept (a concrete classifier).".
+oml:RelationEntity a owl:Class;
+    oml:type oml:Concept;
+    dc:description "The metaclass of an OML relation entity (a reified relation).".
+oml:RelationInstance a owl:Class;
+    oml:type oml:Concept;
+    dc:description "The metaclass of an OML relation instance (an instance of a relation entity).".
+oml:ConceptInstance a owl:Class;
+    oml:type oml:Concept;
+    dc:description "The metaclass of an OML concept instance.".
+oml:Scalar a owl:Class;
+    oml:type oml:Concept;
+    dc:description "The metaclass of an OML scalar (a datatype).".
+oml:ForwardRelation a owl:Class;
+    oml:type oml:Concept;
+    dc:description "The metaclass of the forward direction of an OML relation.".
+oml:UnreifiedRelation a owl:Class;
+    oml:type oml:Concept;
+    dc:description "The metaclass of an OML unreified relation.".
+oml:ReverseRelation a owl:Class;
+    oml:type oml:Concept;
+    dc:description "The metaclass of the reverse direction of an OML relation.".
+oml:Rule a owl:Class;
+    oml:type oml:Concept;
+    dc:description "The metaclass of an OML rule.".
+oml:BuiltIn a owl:Class;
+    oml:type oml:Concept;
+    dc:description "The metaclass of an OML built-in (a SWRL built-in predicate).".
+oml:Vocabulary a owl:Class;
+    oml:type oml:Concept;
+    dc:description "The metaclass of an OML vocabulary ontology.".
+oml:VocabularyBundle a owl:Class;
+    oml:type oml:Concept;
+    dc:description "The metaclass of an OML vocabulary bundle.".
+oml:Description a owl:Class;
+    oml:type oml:Concept;
+    dc:description "The metaclass of an OML description ontology.".
+oml:DescriptionBundle a owl:Class;
+    oml:type oml:Concept;
+    dc:description "The metaclass of an OML description bundle.".
+oml:Quantity a owl:Class;
+    oml:type oml:Concept;
+    dc:description "The metaclass of an OML quantity (a kind of physical quantity).".
+oml:Unit a owl:Class;
+    oml:type oml:Concept;
+    dc:description "The metaclass of an OML unit (a unit of measure).".
+oml:QuantityLiteral a owl:Class;
+    oml:type oml:Concept;
+    dc:description "The metaclass of an OML quantity literal (a numeric value with a unit).".
+oml:relationEntity a owl:ObjectProperty;
+    oml:type oml:UnreifiedRelation;
+    dc:description "Links a reified relation instance to its relation entity.".
+oml:relationBase a owl:ObjectProperty;
+    oml:type oml:UnreifiedRelation;
+    dc:description "Links a relation instance to its relation base.".
+oml:hasSource a owl:ObjectProperty;
+    oml:type oml:UnreifiedRelation;
+    dc:description "The source endpoint of a relation instance.".
+oml:hasTarget a owl:ObjectProperty;
+    oml:type oml:UnreifiedRelation;
+    dc:description "The target endpoint of a relation instance.".
+oml:measures a owl:ObjectProperty;
+    oml:type oml:UnreifiedRelation;
+    dc:description "Links a unit to the quantity kind(s) it measures.".
+oml:unit a owl:ObjectProperty;
+    oml:type oml:UnreifiedRelation;
+    dc:description "Links a quantity literal to its unit.".
+oml:dimension a owl:DatatypeProperty;
+    dc:description "The dimension expression of a quantity.".
+oml:symbol a owl:DatatypeProperty;
+    dc:description "The display symbol of a unit.".
+oml:multiplier a owl:DatatypeProperty;
+    dc:description "The scale multiplier of a unit.".
+oml:value a owl:DatatypeProperty;
+    dc:description "The numeric value of a quantity literal.".

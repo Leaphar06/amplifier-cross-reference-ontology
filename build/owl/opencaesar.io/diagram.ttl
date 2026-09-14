@@ -1,0 +1,77 @@
+@prefix diagram: <http://opencaesar.io/diagram#>.
+@prefix oml: <http://opencaesar.io/oml#>.
+@prefix dc: <http://purl.org/dc/elements/1.1/>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+
+<http://opencaesar.io/diagram> a owl:Ontology;
+    oml:type oml:Vocabulary;
+    oml:namespace <http://opencaesar.io/diagram#>;
+    oml:prefix "diagram";
+    dc:creator "openCAESAR";
+    dc:rights "Copyright 2026 openCAESAR.";
+    dc:source "http://www.opencaesar.io/";
+    dc:description "The Diagram vocabulary defines the elements (nodes, ports, compartments, edges) and properties that the diagram renderer recognizes to draw a graph.";
+    dc:title "Diagram";
+    owl:imports <http://purl.org/dc/elements/1.1>, <http://opencaesar.io/oml>.
+diagram:Element a owl:Class;
+    oml:type oml:Aspect;
+    dc:description "The common supertype of everything the renderer can draw; carries the data properties (text, class) that apply to any element.".
+diagram:Node a owl:Class;
+    oml:type oml:Concept;
+    dc:description "A box. May nest inside another Node or a Compartment, may own Ports and Compartments, and may carry one or more text labels.";
+    rdfs:subClassOf diagram:Element.
+diagram:Compartment a owl:Class;
+    oml:type oml:Concept;
+    dc:description "A structural sub-region of a Node (e.g. a list or attribute compartment); always parented by a Node and never dragged on its own.";
+    rdfs:subClassOf diagram:Element.
+diagram:Port a owl:Class;
+    oml:type oml:Concept;
+    dc:description "A connection point on the boundary of a Node; always parented by a Node.";
+    rdfs:subClassOf diagram:Element.
+diagram:Edge a owl:Class;
+    oml:type oml:Concept;
+    dc:description "A connection between two elements; requires exactly one source and one target, and may carry begin, center, and end labels.";
+    rdfs:subClassOf diagram:Element.
+diagram:ListItem a owl:Class;
+    oml:type oml:Concept;
+    dc:description "Deprecated legacy alias: the renderer still accepts diagram:ListItem and treats it as a diagram:Node for backward compatibility.";
+    rdfs:subClassOf diagram:Node.
+diagram:parent a owl:ObjectProperty;
+    oml:type oml:UnreifiedRelation;
+    dc:description "Containment link to an element's single parent (Node under Node or Compartment, Compartment under Node, Port under Node); functional because each element has at most one parent.";
+    rdfs:domain diagram:Element;
+    rdfs:range diagram:Element;
+    a owl:FunctionalProperty.
+diagram:source a owl:ObjectProperty;
+    oml:type oml:UnreifiedRelation;
+    dc:description "The element an Edge starts from; exactly one per Edge.";
+    rdfs:domain diagram:Edge;
+    rdfs:range diagram:Element;
+    a owl:FunctionalProperty.
+diagram:target a owl:ObjectProperty;
+    oml:type oml:UnreifiedRelation;
+    dc:description "The element an Edge ends at; exactly one per Edge.";
+    rdfs:domain diagram:Edge;
+    rdfs:range diagram:Element;
+    a owl:FunctionalProperty.
+diagram:text a owl:DatatypeProperty;
+    dc:description "A displayed label. On a Node, multiple values stack as multiple labels; on an Edge it is the center label. Non-functional to allow several labels.";
+    rdfs:domain diagram:Element;
+    rdfs:range xsd:string.
+diagram:beginText a owl:DatatypeProperty;
+    dc:description "The label rendered at the start (source end) of an Edge.";
+    rdfs:domain diagram:Edge;
+    rdfs:range xsd:string;
+    a owl:FunctionalProperty.
+diagram:endText a owl:DatatypeProperty;
+    dc:description "The label rendered at the end (target end) of an Edge.";
+    rdfs:domain diagram:Edge;
+    rdfs:range xsd:string;
+    a owl:FunctionalProperty.
+diagram:class a owl:DatatypeProperty;
+    dc:description "One or more CSS class tokens used to match diagram stylesheet rules; a single value may also carry whitespace-separated tokens.";
+    rdfs:domain diagram:Element;
+    rdfs:range xsd:string.

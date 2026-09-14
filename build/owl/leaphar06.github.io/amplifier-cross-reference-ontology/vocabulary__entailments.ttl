@@ -1,0 +1,256 @@
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix amplifier: <https://leaphar06.github.io/amplifier-cross-reference-ontology/vocabulary#> .
+@prefix oml:   <http://opencaesar.io/oml#> .
+
+amplifier:SupplyVoltageCriterion
+        rdfs:subClassOf  owl:Thing , amplifier:SupplyVoltageCriterion .
+
+oml:UnreifiedRelation
+        rdfs:subClassOf  owl:Thing , oml:UnreifiedRelation .
+
+oml:Scalar  rdfs:subClassOf  owl:Thing , oml:Scalar .
+
+amplifier:HighSpeedAmplifier
+        rdfs:subClassOf  owl:Thing , amplifier:HighSpeedAmplifier .
+
+amplifier:matches  rdfs:subPropertyOf  owl:topDataProperty , amplifier:matches .
+
+oml:ReverseRelation  rdfs:subClassOf  owl:Thing , oml:ReverseRelation .
+
+amplifier:derivedFrom
+        a                   owl:Thing ;
+        rdfs:subPropertyOf  owl:topObjectProperty , amplifier:derivedFrom ;
+        owl:inverseOf       amplifier:informsGap ;
+        owl:sameAs          amplifier:derivedFrom .
+
+oml:unit  rdfs:subPropertyOf  owl:topObjectProperty , oml:unit .
+
+amplifier:CompetitorVendor
+        rdfs:subClassOf  owl:Thing , amplifier:CompetitorVendor .
+
+oml:Unit  rdfs:subClassOf  owl:Thing , oml:Unit .
+
+oml:Concept  rdfs:subClassOf  owl:Thing , oml:Concept .
+
+amplifier:gapCount  rdfs:subPropertyOf  owl:topDataProperty , amplifier:gapCount .
+
+oml:Aspect  rdfs:subClassOf  owl:Thing , oml:Aspect .
+
+oml:DescriptionBundle
+        rdfs:subClassOf  owl:Thing , oml:DescriptionBundle .
+
+amplifier:hasAmplifier
+        a                   owl:Thing ;
+        rdfs:subPropertyOf  owl:topObjectProperty , amplifier:hasAmplifier ;
+        owl:sameAs          amplifier:hasAmplifier .
+
+oml:ConceptInstance  rdfs:subClassOf  owl:Thing , oml:ConceptInstance .
+
+amplifier:SlewRateCriterion
+        rdfs:subClassOf  owl:Thing , amplifier:SlewRateCriterion .
+
+oml:ForwardRelation  rdfs:subClassOf  owl:Thing , oml:ForwardRelation .
+
+amplifier:hasCompetitorPart
+        a                   owl:Thing ;
+        rdfs:subPropertyOf  owl:topObjectProperty , amplifier:hasCompetitorPart ;
+        owl:sameAs          amplifier:hasCompetitorPart .
+
+amplifier:Criterion  rdfs:subClassOf  owl:Thing , amplifier:Criterion .
+
+<https://leaphar06.github.io/amplifier-cross-reference-ontology/vocabulary__entailments>
+        a            owl:Ontology ;
+        owl:imports  <https://leaphar06.github.io/amplifier-cross-reference-ontology/vocabulary> .
+
+amplifier:policyName  rdfs:subPropertyOf
+                owl:topDataProperty , amplifier:policyName .
+
+oml:symbol  rdfs:subPropertyOf  owl:topDataProperty , oml:symbol .
+
+oml:relationBase  rdfs:subPropertyOf  owl:topObjectProperty , oml:relationBase .
+
+oml:value  rdfs:subPropertyOf  owl:topDataProperty , oml:value .
+
+owl:Nothing  a           owl:Class ;
+        rdfs:subClassOf  oml:Quantity , amplifier:NoiseDensityCriterion , amplifier:SupplyVoltageCriterion , amplifier:PackageCriterion , oml:ReverseRelation , amplifier:CoverageGap , oml:VocabularyBundle , oml:DescriptionBundle , oml:BuiltIn , oml:UnreifiedRelation , amplifier:PartialMatchReplacement , amplifier:ProductLine , oml:RelationEntity , owl:Nothing , oml:Rule , oml:Unit , oml:Vocabulary , amplifier:FullParameterMatch , amplifier:Part , amplifier:TempGradeCriterion , amplifier:NoMatchReplacement , oml:Scalar , owl:Thing , oml:ConceptInstance , oml:QuantityLiteral , amplifier:CompetitorAmplifier , oml:Concept , amplifier:ThresholdPolicy , amplifier:HighSpeedAmplifier , amplifier:Criterion , oml:ForwardRelation , amplifier:ParameterMatch , amplifier:InputBiasCurrentCriterion , oml:Aspect , amplifier:FullMatchReplacement , amplifier:GBWCriterion , amplifier:CompetitorVendor , oml:RelationInstance , amplifier:SlewRateCriterion , oml:Description .
+
+amplifier:Part  rdfs:subClassOf  owl:Thing , amplifier:Part .
+
+owl:bottomDataProperty
+        a                   owl:DatatypeProperty , owl:FunctionalProperty ;
+        rdfs:subPropertyOf  owl:topDataProperty , amplifier:vendorName , oml:symbol , owl:bottomDataProperty , oml:value , amplifier:gapCount , oml:multiplier , amplifier:partNumber , amplifier:productLineName , amplifier:matches , oml:dimension , amplifier:policyName .
+
+amplifier:InputBiasCurrentCriterion
+        rdfs:subClassOf  owl:Thing , amplifier:InputBiasCurrentCriterion .
+
+amplifier:governs  a        owl:Thing ;
+        rdfs:subPropertyOf  owl:topObjectProperty , amplifier:governs ;
+        owl:sameAs          amplifier:governs .
+
+amplifier:isSubLineOf
+        a                   owl:Thing ;
+        rdfs:subPropertyOf  owl:topObjectProperty , amplifier:isSubLineOf ;
+        owl:sameAs          amplifier:isSubLineOf .
+
+oml:measures  rdfs:subPropertyOf  owl:topObjectProperty , oml:measures .
+
+amplifier:isEvaluatedBy
+        a                   owl:Thing ;
+        rdfs:subPropertyOf  owl:topObjectProperty , amplifier:isEvaluatedBy ;
+        owl:sameAs          amplifier:isEvaluatedBy .
+
+oml:multiplier  rdfs:subPropertyOf  owl:topDataProperty , oml:multiplier .
+
+oml:relationEntity  rdfs:subPropertyOf  owl:topObjectProperty , oml:relationEntity .
+
+amplifier:isReplacedBy
+        a                   owl:Thing ;
+        rdfs:subPropertyOf  owl:topObjectProperty , amplifier:isReplacedBy ;
+        owl:sameAs          amplifier:isReplacedBy .
+
+amplifier:productLineName
+        rdfs:subPropertyOf  owl:topDataProperty , amplifier:productLineName .
+
+amplifier:informsGap  a     owl:Thing ;
+        rdfs:subPropertyOf  owl:topObjectProperty , amplifier:informsGap ;
+        owl:sameAs          amplifier:informsGap .
+
+oml:Rule  rdfs:subClassOf  owl:Thing , oml:Rule .
+
+amplifier:FullParameterMatch
+        rdfs:subClassOf  owl:Thing , amplifier:FullParameterMatch .
+
+amplifier:hasSubLine  a     owl:Thing ;
+        rdfs:subPropertyOf  owl:topObjectProperty , amplifier:hasSubLine ;
+        owl:inverseOf       amplifier:isSubLineOf ;
+        owl:sameAs          amplifier:hasSubLine .
+
+owl:Thing  a             owl:Class ;
+        rdfs:subClassOf  owl:Thing .
+
+oml:Vocabulary  rdfs:subClassOf  owl:Thing , oml:Vocabulary .
+
+amplifier:CompetitorAmplifier
+        rdfs:subClassOf  owl:Thing , amplifier:CompetitorAmplifier .
+
+oml:BuiltIn  rdfs:subClassOf  owl:Thing , oml:BuiltIn .
+
+amplifier:NoiseDensityCriterion
+        rdfs:subClassOf  owl:Thing , amplifier:NoiseDensityCriterion .
+
+oml:RelationInstance  rdfs:subClassOf  owl:Thing , oml:RelationInstance .
+
+amplifier:ProductLine
+        rdfs:subClassOf  owl:Thing , amplifier:ProductLine .
+
+amplifier:belongsToVendor
+        a                   owl:Thing ;
+        rdfs:subPropertyOf  owl:topObjectProperty , amplifier:belongsToVendor ;
+        owl:inverseOf       amplifier:hasCompetitorPart ;
+        owl:sameAs          amplifier:belongsToVendor .
+
+oml:VocabularyBundle  rdfs:subClassOf  owl:Thing , oml:VocabularyBundle .
+
+amplifier:partNumber  rdfs:subPropertyOf
+                owl:topDataProperty , amplifier:partNumber .
+
+amplifier:replaces  a       owl:Thing ;
+        rdfs:subPropertyOf  owl:topObjectProperty , amplifier:replaces ;
+        owl:inverseOf       amplifier:isReplacedBy ;
+        owl:sameAs          amplifier:replaces .
+
+owl:topObjectProperty
+        a                   owl:SymmetricProperty , owl:TransitiveProperty , owl:ObjectProperty ;
+        rdfs:subPropertyOf  owl:topObjectProperty ;
+        owl:inverseOf       owl:topObjectProperty .
+
+amplifier:CoverageGap
+        rdfs:subClassOf  owl:Thing , amplifier:CoverageGap .
+
+owl:topDataProperty  a      owl:DatatypeProperty ;
+        rdfs:subPropertyOf  owl:topDataProperty .
+
+oml:QuantityLiteral  rdfs:subClassOf  owl:Thing , oml:QuantityLiteral .
+
+amplifier:isParameterMatchOf
+        a                   owl:Thing ;
+        rdfs:subPropertyOf  owl:topObjectProperty , amplifier:isParameterMatchOf ;
+        owl:sameAs          amplifier:isParameterMatchOf .
+
+amplifier:NoMatchReplacement
+        rdfs:subClassOf  amplifier:Part , owl:Thing , amplifier:NoMatchReplacement .
+
+amplifier:belongsToLine
+        a                   owl:Thing ;
+        rdfs:subPropertyOf  owl:topObjectProperty , amplifier:belongsToLine ;
+        owl:inverseOf       amplifier:hasAmplifier ;
+        owl:sameAs          amplifier:belongsToLine .
+
+amplifier:vendorName  rdfs:subPropertyOf
+                owl:topDataProperty , amplifier:vendorName .
+
+amplifier:PartialMatchReplacement
+        rdfs:subClassOf  amplifier:Part , owl:Thing , amplifier:PartialMatchReplacement .
+
+owl:bottomObjectProperty
+        a                   owl:SymmetricProperty , owl:ObjectProperty , owl:FunctionalProperty ;
+        rdfs:subPropertyOf  amplifier:isEvaluatedBy , amplifier:replaces , amplifier:hasAmplifier , oml:relationEntity , amplifier:isReplacedBy , oml:hasTarget , amplifier:isSubLineOf , owl:topObjectProperty , amplifier:evaluatesCriterion , amplifier:comparesTo , amplifier:hasSubLine , amplifier:hasCompetitorPart , oml:hasSource , amplifier:comparedBy , amplifier:governs , oml:unit , amplifier:derivedFrom , oml:relationBase , amplifier:belongsToLine , amplifier:hasParameterMatch , amplifier:informsGap , owl:bottomObjectProperty , amplifier:governedBy , amplifier:belongsToVendor , amplifier:isParameterMatchOf , oml:measures ;
+        owl:inverseOf       owl:bottomObjectProperty .
+
+amplifier:PackageCriterion
+        rdfs:subClassOf  owl:Thing , amplifier:PackageCriterion .
+
+amplifier:comparedBy  a     owl:Thing ;
+        rdfs:subPropertyOf  owl:topObjectProperty , amplifier:comparedBy ;
+        owl:sameAs          amplifier:comparedBy .
+
+amplifier:ParameterMatch
+        rdfs:subClassOf  owl:Thing , amplifier:ParameterMatch .
+
+oml:hasSource  rdfs:subPropertyOf  owl:topObjectProperty , oml:hasSource .
+
+oml:Description  rdfs:subClassOf  owl:Thing , oml:Description .
+
+oml:hasTarget  rdfs:subPropertyOf  owl:topObjectProperty , oml:hasTarget .
+
+amplifier:ThresholdPolicy
+        rdfs:subClassOf  owl:Thing , amplifier:ThresholdPolicy .
+
+oml:RelationEntity  rdfs:subClassOf  owl:Thing , oml:RelationEntity .
+
+amplifier:governedBy  a     owl:Thing ;
+        rdfs:subPropertyOf  owl:topObjectProperty , amplifier:governedBy ;
+        owl:inverseOf       amplifier:governs ;
+        owl:sameAs          amplifier:governedBy .
+
+amplifier:comparesTo  a     owl:Thing ;
+        rdfs:subPropertyOf  owl:topObjectProperty , amplifier:comparesTo ;
+        owl:inverseOf       amplifier:comparedBy ;
+        owl:sameAs          amplifier:comparesTo .
+
+amplifier:FullMatchReplacement
+        rdfs:subClassOf  amplifier:Part , amplifier:HighSpeedAmplifier , owl:Thing , amplifier:FullMatchReplacement .
+
+amplifier:hasParameterMatch
+        a                   owl:Thing ;
+        rdfs:subPropertyOf  owl:topObjectProperty , amplifier:hasParameterMatch ;
+        owl:inverseOf       amplifier:isParameterMatchOf ;
+        owl:sameAs          amplifier:hasParameterMatch .
+
+amplifier:evaluatesCriterion
+        a                   owl:Thing ;
+        rdfs:subPropertyOf  owl:topObjectProperty , amplifier:evaluatesCriterion ;
+        owl:inverseOf       amplifier:isEvaluatedBy ;
+        owl:sameAs          amplifier:evaluatesCriterion .
+
+amplifier:TempGradeCriterion
+        rdfs:subClassOf  owl:Thing , amplifier:TempGradeCriterion .
+
+oml:Quantity  rdfs:subClassOf  owl:Thing , oml:Quantity .
+
+oml:dimension  rdfs:subPropertyOf  owl:topDataProperty , oml:dimension .
+
+amplifier:GBWCriterion
+        rdfs:subClassOf  owl:Thing , amplifier:GBWCriterion .

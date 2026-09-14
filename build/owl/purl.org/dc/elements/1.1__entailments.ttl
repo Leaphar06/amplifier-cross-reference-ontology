@@ -1,0 +1,89 @@
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix oml:   <http://opencaesar.io/oml#> .
+
+owl:topDataProperty  a      owl:DatatypeProperty ;
+        rdfs:subPropertyOf  owl:topDataProperty .
+
+oml:measures  rdfs:subPropertyOf  owl:topObjectProperty , oml:measures .
+
+oml:unit  rdfs:subPropertyOf  owl:topObjectProperty , oml:unit .
+
+oml:RelationInstance  rdfs:subClassOf  owl:Thing , oml:RelationInstance .
+
+oml:BuiltIn  rdfs:subClassOf  owl:Thing , oml:BuiltIn .
+
+oml:relationBase  rdfs:subPropertyOf  owl:topObjectProperty , oml:relationBase .
+
+oml:hasSource  rdfs:subPropertyOf  owl:topObjectProperty , oml:hasSource .
+
+oml:UnreifiedRelation
+        rdfs:subClassOf  owl:Thing , oml:UnreifiedRelation .
+
+oml:Scalar  rdfs:subClassOf  owl:Thing , oml:Scalar .
+
+oml:dimension  rdfs:subPropertyOf  owl:topDataProperty , oml:dimension .
+
+oml:Quantity  rdfs:subClassOf  owl:Thing , oml:Quantity .
+
+owl:Nothing  a           owl:Class ;
+        rdfs:subClassOf  oml:ConceptInstance , oml:Unit , oml:QuantityLiteral , oml:Rule , oml:DescriptionBundle , oml:Description , owl:Thing , oml:VocabularyBundle , oml:Concept , oml:BuiltIn , oml:UnreifiedRelation , oml:Vocabulary , oml:RelationInstance , oml:Quantity , oml:RelationEntity , oml:Aspect , oml:Scalar , oml:ForwardRelation , owl:Nothing , oml:ReverseRelation .
+
+oml:Aspect  rdfs:subClassOf  owl:Thing , oml:Aspect .
+
+oml:Vocabulary  rdfs:subClassOf  owl:Thing , oml:Vocabulary .
+
+owl:bottomObjectProperty
+        a                   owl:SymmetricProperty , owl:ObjectProperty ;
+        rdfs:subPropertyOf  oml:relationEntity , oml:hasTarget , owl:topObjectProperty , oml:hasSource , oml:relationBase , oml:unit , owl:bottomObjectProperty , oml:measures ;
+        owl:inverseOf       owl:bottomObjectProperty .
+
+owl:bottomDataProperty
+        a                   owl:DatatypeProperty ;
+        rdfs:subPropertyOf  owl:topDataProperty , oml:value , oml:symbol , oml:dimension , oml:multiplier , owl:bottomDataProperty .
+
+oml:hasTarget  rdfs:subPropertyOf  owl:topObjectProperty , oml:hasTarget .
+
+oml:multiplier  rdfs:subPropertyOf  owl:topDataProperty , oml:multiplier .
+
+oml:ForwardRelation  rdfs:subClassOf  owl:Thing , oml:ForwardRelation .
+
+oml:Concept  rdfs:subClassOf  owl:Thing , oml:Concept .
+
+owl:Thing  a             owl:Class ;
+        rdfs:subClassOf  owl:Thing .
+
+oml:Description  rdfs:subClassOf  owl:Thing , oml:Description .
+
+oml:symbol  rdfs:subPropertyOf  owl:topDataProperty , oml:symbol .
+
+oml:ConceptInstance  rdfs:subClassOf  owl:Thing , oml:ConceptInstance .
+
+oml:RelationEntity  rdfs:subClassOf  owl:Thing , oml:RelationEntity .
+
+owl:topObjectProperty
+        a                   owl:SymmetricProperty , owl:TransitiveProperty , owl:ObjectProperty ;
+        rdfs:subPropertyOf  owl:topObjectProperty ;
+        owl:inverseOf       owl:topObjectProperty .
+
+oml:DescriptionBundle
+        rdfs:subClassOf  owl:Thing , oml:DescriptionBundle .
+
+oml:VocabularyBundle  rdfs:subClassOf  owl:Thing , oml:VocabularyBundle .
+
+oml:ReverseRelation  rdfs:subClassOf  owl:Thing , oml:ReverseRelation .
+
+<http://purl.org/dc/elements/1.1__entailments>
+        a            owl:Ontology ;
+        owl:imports  <http://purl.org/dc/elements/1.1> .
+
+oml:value  rdfs:subPropertyOf  owl:topDataProperty , oml:value .
+
+oml:Unit  rdfs:subClassOf  owl:Thing , oml:Unit .
+
+oml:QuantityLiteral  rdfs:subClassOf  owl:Thing , oml:QuantityLiteral .
+
+oml:relationEntity  rdfs:subPropertyOf  owl:topObjectProperty , oml:relationEntity .
+
+oml:Rule  rdfs:subClassOf  owl:Thing , oml:Rule .

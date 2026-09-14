@@ -1,0 +1,212 @@
+@prefix oml: <http://opencaesar.io/oml#>.
+@prefix dc: <http://purl.org/dc/elements/1.1/>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix amplifier: <https://leaphar06.github.io/amplifier-cross-reference-ontology/vocabulary#>.
+
+<https://leaphar06.github.io/amplifier-cross-reference-ontology/vocabulary> a owl:Ontology;
+    oml:type oml:Vocabulary;
+    oml:namespace <https://leaphar06.github.io/amplifier-cross-reference-ontology/vocabulary#>;
+    oml:prefix "amplifier";
+    dc:title "Amplifier cross-reference vocabulary";
+    dc:description "Concepts and relations for classifying TI amplifier replacements for competitor parts.";
+    owl:imports <http://purl.org/dc/elements/1.1>, <http://opencaesar.io/oml>.
+amplifier:Part a owl:Class;
+    oml:type oml:Concept;
+    dc:description "A physical amplifier part, TI or competitor.".
+amplifier:partNumber a owl:DatatypeProperty;
+    dc:description "The manufacturer part number.";
+    rdfs:domain amplifier:Part;
+    rdfs:range xsd:string;
+    a owl:FunctionalProperty.
+amplifier:HighSpeedAmplifier a owl:Class;
+    oml:type oml:Concept;
+    dc:description "A TI high-speed amplifier part.";
+    rdfs:subClassOf amplifier:Part.
+_:b9c4396471ef397ab-0 a owl:Restriction;
+    owl:onProperty amplifier:hasParameterMatch;
+    owl:minCardinality 7.
+amplifier:HighSpeedAmplifier rdfs:subClassOf _:b9c4396471ef397ab-0.
+amplifier:CompetitorAmplifier a owl:Class;
+    oml:type oml:Concept;
+    dc:description "A competitor's amplifier part being cross-referenced.";
+    rdfs:subClassOf amplifier:Part.
+amplifier:CompetitorVendor a owl:Class;
+    oml:type oml:Concept;
+    dc:description "The company that makes a competitor part.".
+amplifier:vendorName a owl:DatatypeProperty;
+    rdfs:domain amplifier:CompetitorVendor;
+    rdfs:range xsd:string;
+    a owl:FunctionalProperty.
+amplifier:ProductLine a owl:Class;
+    oml:type oml:Concept;
+    dc:description "A TI product line that owns a set of amplifiers.".
+amplifier:productLineName a owl:DatatypeProperty;
+    rdfs:domain amplifier:ProductLine;
+    rdfs:range xsd:string;
+    a owl:FunctionalProperty.
+amplifier:Criterion a owl:Class;
+    oml:type oml:Concept;
+    dc:description "One of the matching criteria compared between parts.".
+amplifier:GBWCriterion a owl:Class;
+    oml:type oml:Concept;
+    rdfs:subClassOf amplifier:Criterion.
+amplifier:SupplyVoltageCriterion a owl:Class;
+    oml:type oml:Concept;
+    rdfs:subClassOf amplifier:Criterion.
+amplifier:PackageCriterion a owl:Class;
+    oml:type oml:Concept;
+    rdfs:subClassOf amplifier:Criterion.
+amplifier:SlewRateCriterion a owl:Class;
+    oml:type oml:Concept;
+    rdfs:subClassOf amplifier:Criterion.
+amplifier:InputBiasCurrentCriterion a owl:Class;
+    oml:type oml:Concept;
+    rdfs:subClassOf amplifier:Criterion.
+amplifier:NoiseDensityCriterion a owl:Class;
+    oml:type oml:Concept;
+    rdfs:subClassOf amplifier:Criterion.
+amplifier:TempGradeCriterion a owl:Class;
+    oml:type oml:Concept;
+    rdfs:subClassOf amplifier:Criterion.
+amplifier:ParameterMatch a owl:Class;
+    oml:type oml:Concept;
+    dc:description "A single per-parameter comparison result against a competitor part.".
+amplifier:matches a owl:DatatypeProperty;
+    dc:description "Whether this specific parameter matched (true) or blocked a full match (false).";
+    rdfs:domain amplifier:ParameterMatch;
+    rdfs:range xsd:boolean;
+    a owl:FunctionalProperty.
+amplifier:FullParameterMatch a owl:Class;
+    oml:type oml:Concept;
+    dc:description "A ParameterMatch where the parameter matched.";
+    rdfs:subClassOf amplifier:ParameterMatch.
+_:b9c4396471ef397ab-1 a owl:Restriction;
+    owl:onProperty amplifier:matches;
+    owl:hasValue true.
+amplifier:FullParameterMatch rdfs:subClassOf _:b9c4396471ef397ab-1.
+amplifier:FullMatchReplacement a owl:Class;
+    oml:type oml:Concept;
+    dc:description "Full/drop-in: every ParameterMatch for this part is a FullParameterMatch.".
+_:b9c4396471ef397ab-2 a owl:Restriction;
+    owl:onProperty amplifier:hasParameterMatch;
+    owl:allValuesFrom amplifier:FullParameterMatch.
+_:b9c4396471ef397ab-4 rdf:first amplifier:HighSpeedAmplifier;
+    rdf:rest _:b9c4396471ef397ab-5.
+_:b9c4396471ef397ab-5 rdf:first _:b9c4396471ef397ab-2;
+    rdf:rest rdf:nil.
+_:b9c4396471ef397ab-3 a owl:Class;
+    owl:intersectionOf _:b9c4396471ef397ab-4.
+amplifier:FullMatchReplacement owl:equivalentClass _:b9c4396471ef397ab-3.
+amplifier:PartialMatchReplacement a owl:Class;
+    oml:type oml:Concept;
+    dc:description "Same functionality, but at least one parameter blocks a full match.";
+    rdfs:subClassOf amplifier:HighSpeedAmplifier.
+amplifier:NoMatchReplacement a owl:Class;
+    oml:type oml:Concept;
+    dc:description "No viable TI replacement exists.";
+    rdfs:subClassOf amplifier:HighSpeedAmplifier.
+amplifier:CoverageGap a owl:Class;
+    oml:type oml:Concept;
+    dc:description "A systematic partial/no-match pattern against a vendor's catalog, for roadmap prioritization.".
+amplifier:gapCount a owl:DatatypeProperty;
+    rdfs:domain amplifier:CoverageGap;
+    rdfs:range xsd:integer;
+    a owl:FunctionalProperty.
+amplifier:ThresholdPolicy a owl:Class;
+    oml:type oml:Concept;
+    dc:description "The policy that governs an ambiguous 'close enough' threshold call.".
+amplifier:policyName a owl:DatatypeProperty;
+    rdfs:domain amplifier:ThresholdPolicy;
+    rdfs:range xsd:string;
+    a owl:FunctionalProperty.
+amplifier:comparesTo a owl:ObjectProperty;
+    oml:type oml:UnreifiedRelation;
+    dc:description "Links a ParameterMatch to the competitor part it was compared against.";
+    rdfs:domain amplifier:ParameterMatch;
+    rdfs:range amplifier:CompetitorAmplifier;
+    a owl:FunctionalProperty.
+amplifier:comparedBy a owl:ObjectProperty;
+    oml:type oml:ReverseRelation;
+    oml:relationBase amplifier:comparesTo;
+    owl:inverseOf amplifier:comparesTo.
+amplifier:hasParameterMatch a owl:ObjectProperty;
+    oml:type oml:UnreifiedRelation;
+    dc:description "Links a TI part to one of its per-parameter comparison results.";
+    rdfs:domain amplifier:HighSpeedAmplifier;
+    rdfs:range amplifier:ParameterMatch.
+amplifier:isParameterMatchOf a owl:ObjectProperty;
+    oml:type oml:ReverseRelation;
+    oml:relationBase amplifier:hasParameterMatch;
+    owl:inverseOf amplifier:hasParameterMatch.
+amplifier:evaluatesCriterion a owl:ObjectProperty;
+    oml:type oml:UnreifiedRelation;
+    dc:description "Which criterion a ParameterMatch evaluates.";
+    rdfs:domain amplifier:ParameterMatch;
+    rdfs:range amplifier:Criterion;
+    a owl:FunctionalProperty.
+amplifier:isEvaluatedBy a owl:ObjectProperty;
+    oml:type oml:ReverseRelation;
+    oml:relationBase amplifier:evaluatesCriterion;
+    owl:inverseOf amplifier:evaluatesCriterion.
+amplifier:replaces a owl:ObjectProperty;
+    oml:type oml:UnreifiedRelation;
+    dc:description "Indicates a TI part replaces a competitor part overall.";
+    rdfs:domain amplifier:HighSpeedAmplifier;
+    rdfs:range amplifier:CompetitorAmplifier;
+    a owl:AsymmetricProperty, owl:IrreflexiveProperty.
+amplifier:isReplacedBy a owl:ObjectProperty;
+    oml:type oml:ReverseRelation;
+    oml:relationBase amplifier:replaces;
+    owl:inverseOf amplifier:replaces.
+amplifier:belongsToVendor a owl:ObjectProperty;
+    oml:type oml:UnreifiedRelation;
+    dc:description "The vendor that makes a competitor part.";
+    rdfs:domain amplifier:CompetitorAmplifier;
+    rdfs:range amplifier:CompetitorVendor;
+    a owl:FunctionalProperty.
+amplifier:hasCompetitorPart a owl:ObjectProperty;
+    oml:type oml:ReverseRelation;
+    oml:relationBase amplifier:belongsToVendor;
+    owl:inverseOf amplifier:belongsToVendor.
+amplifier:belongsToLine a owl:ObjectProperty;
+    oml:type oml:UnreifiedRelation;
+    dc:description "The TI product line an amplifier belongs to.";
+    rdfs:domain amplifier:HighSpeedAmplifier;
+    rdfs:range amplifier:ProductLine;
+    a owl:FunctionalProperty.
+amplifier:hasAmplifier a owl:ObjectProperty;
+    oml:type oml:ReverseRelation;
+    oml:relationBase amplifier:belongsToLine;
+    owl:inverseOf amplifier:belongsToLine.
+amplifier:hasSubLine a owl:ObjectProperty;
+    oml:type oml:UnreifiedRelation;
+    dc:description "A product line's sub-line, for recursive roadmap grouping.";
+    rdfs:domain amplifier:ProductLine;
+    rdfs:range amplifier:ProductLine;
+    a owl:IrreflexiveProperty.
+amplifier:isSubLineOf a owl:ObjectProperty;
+    oml:type oml:ReverseRelation;
+    oml:relationBase amplifier:hasSubLine;
+    owl:inverseOf amplifier:hasSubLine.
+amplifier:derivedFrom a owl:ObjectProperty;
+    oml:type oml:UnreifiedRelation;
+    dc:description "The ParameterMatch evidence a CoverageGap is derived from.";
+    rdfs:domain amplifier:CoverageGap;
+    rdfs:range amplifier:ParameterMatch.
+amplifier:informsGap a owl:ObjectProperty;
+    oml:type oml:ReverseRelation;
+    oml:relationBase amplifier:derivedFrom;
+    owl:inverseOf amplifier:derivedFrom.
+amplifier:governedBy a owl:ObjectProperty;
+    oml:type oml:UnreifiedRelation;
+    dc:description "The threshold policy governing a ParameterMatch's close-enough call.";
+    rdfs:domain amplifier:ParameterMatch;
+    rdfs:range amplifier:ThresholdPolicy;
+    a owl:FunctionalProperty.
+amplifier:governs a owl:ObjectProperty;
+    oml:type oml:ReverseRelation;
+    oml:relationBase amplifier:governedBy;
+    owl:inverseOf amplifier:governedBy.

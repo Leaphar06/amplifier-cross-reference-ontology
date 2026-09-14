@@ -1,0 +1,30 @@
+@prefix oml: <http://opencaesar.io/oml#>.
+@prefix dc: <http://purl.org/dc/elements/1.1/>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+
+<http://purl.org/dc/elements/1.1> a owl:Ontology;
+    oml:type oml:Vocabulary;
+    oml:namespace <http://purl.org/dc/elements/1.1/>;
+    oml:prefix "dc";
+    dc:creator "DCMI Usage Board";
+    dc:rights "Copyright 1995-2019 DCMI.";
+    dc:source "https://www.dublincore.org/specifications/dublin-core/dces/";
+    dc:description "The DC vocabulary is a subset of the vocabulary maintained by the Dublin Core Metadata Initiative.";
+    dc:title "DC";
+    owl:imports <http://opencaesar.io/oml>.
+dc:contributor a owl:AnnotationProperty.
+dc:coverage a owl:AnnotationProperty.
+dc:creator a owl:AnnotationProperty.
+dc:date a owl:AnnotationProperty.
+dc:description a owl:AnnotationProperty.
+dc:format a owl:AnnotationProperty.
+dc:identifier a owl:AnnotationProperty.
+dc:language a owl:AnnotationProperty.
+dc:publisher a owl:AnnotationProperty.
+dc:relation a owl:AnnotationProperty.
+dc:rights a owl:AnnotationProperty.
+dc:source a owl:AnnotationProperty.
+dc:subject a owl:AnnotationProperty.
+dc:title a owl:AnnotationProperty.
+dc:type a owl:AnnotationProperty.

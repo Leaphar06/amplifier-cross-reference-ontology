@@ -1,0 +1,116 @@
+@prefix diagram: <http://opencaesar.io/diagram#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix oml:   <http://opencaesar.io/oml#> .
+
+oml:UnreifiedRelation
+        rdfs:subClassOf  owl:Thing , oml:UnreifiedRelation .
+
+oml:Scalar  rdfs:subClassOf  owl:Thing , oml:Scalar .
+
+oml:ReverseRelation  rdfs:subClassOf  owl:Thing , oml:ReverseRelation .
+
+oml:unit  rdfs:subPropertyOf  owl:topObjectProperty , oml:unit .
+
+diagram:ListItem  rdfs:subClassOf  diagram:Element , owl:Thing , diagram:ListItem .
+
+oml:Unit  rdfs:subClassOf  owl:Thing , oml:Unit .
+
+oml:Concept  rdfs:subClassOf  owl:Thing , oml:Concept .
+
+oml:Aspect  rdfs:subClassOf  owl:Thing , oml:Aspect .
+
+oml:DescriptionBundle
+        rdfs:subClassOf  owl:Thing , oml:DescriptionBundle .
+
+oml:ConceptInstance  rdfs:subClassOf  owl:Thing , oml:ConceptInstance .
+
+oml:ForwardRelation  rdfs:subClassOf  owl:Thing , oml:ForwardRelation .
+
+diagram:endText  rdfs:subPropertyOf  owl:topDataProperty , diagram:endText .
+
+diagram:beginText  rdfs:subPropertyOf  owl:topDataProperty , diagram:beginText .
+
+oml:symbol  rdfs:subPropertyOf  owl:topDataProperty , oml:symbol .
+
+oml:relationBase  rdfs:subPropertyOf  owl:topObjectProperty , oml:relationBase .
+
+oml:value  rdfs:subPropertyOf  owl:topDataProperty , oml:value .
+
+owl:Nothing  a           owl:Class ;
+        rdfs:subClassOf  diagram:ListItem , oml:ConceptInstance , diagram:Edge , oml:Unit , oml:QuantityLiteral , oml:Rule , oml:DescriptionBundle , diagram:Compartment , diagram:Port , oml:Description , owl:Thing , oml:VocabularyBundle , oml:Concept , oml:BuiltIn , diagram:Element , oml:UnreifiedRelation , oml:Vocabulary , oml:RelationInstance , oml:Quantity , oml:RelationEntity , oml:Aspect , oml:Scalar , diagram:Node , oml:ForwardRelation , owl:Nothing , oml:ReverseRelation .
+
+owl:bottomDataProperty
+        a                   owl:DatatypeProperty , owl:FunctionalProperty ;
+        rdfs:subPropertyOf  owl:topDataProperty , oml:symbol , owl:bottomDataProperty , oml:value , diagram:class , diagram:endText , diagram:text , oml:multiplier , diagram:beginText , oml:dimension .
+
+oml:measures  rdfs:subPropertyOf  owl:topObjectProperty , oml:measures .
+
+oml:multiplier  rdfs:subPropertyOf  owl:topDataProperty , oml:multiplier .
+
+diagram:Edge  rdfs:subClassOf  owl:Thing , diagram:Edge .
+
+diagram:Port  rdfs:subClassOf  owl:Thing , diagram:Port .
+
+oml:relationEntity  rdfs:subPropertyOf  owl:topObjectProperty , oml:relationEntity .
+
+diagram:parent  rdfs:subPropertyOf  owl:topObjectProperty , diagram:parent .
+
+oml:Rule  rdfs:subClassOf  owl:Thing , oml:Rule .
+
+diagram:source  rdfs:subPropertyOf  owl:topObjectProperty , diagram:source .
+
+owl:Thing  a             owl:Class ;
+        rdfs:subClassOf  owl:Thing .
+
+diagram:class  rdfs:subPropertyOf  owl:topDataProperty , diagram:class .
+
+oml:Vocabulary  rdfs:subClassOf  owl:Thing , oml:Vocabulary .
+
+oml:BuiltIn  rdfs:subClassOf  owl:Thing , oml:BuiltIn .
+
+oml:RelationInstance  rdfs:subClassOf  owl:Thing , oml:RelationInstance .
+
+oml:VocabularyBundle  rdfs:subClassOf  owl:Thing , oml:VocabularyBundle .
+
+diagram:text  rdfs:subPropertyOf  owl:topDataProperty , diagram:text .
+
+owl:topObjectProperty
+        a                   owl:SymmetricProperty , owl:TransitiveProperty , owl:ObjectProperty ;
+        rdfs:subPropertyOf  owl:topObjectProperty ;
+        owl:inverseOf       owl:topObjectProperty .
+
+owl:topDataProperty  a      owl:DatatypeProperty ;
+        rdfs:subPropertyOf  owl:topDataProperty .
+
+oml:QuantityLiteral  rdfs:subClassOf  owl:Thing , oml:QuantityLiteral .
+
+diagram:Node  rdfs:subClassOf  owl:Thing , diagram:Node .
+
+<http://opencaesar.io/diagram__entailments>
+        a            owl:Ontology ;
+        owl:imports  <http://opencaesar.io/diagram> .
+
+diagram:Element  rdfs:subClassOf  owl:Thing , diagram:Element .
+
+owl:bottomObjectProperty
+        a                   owl:SymmetricProperty , owl:ObjectProperty , owl:FunctionalProperty ;
+        rdfs:subPropertyOf  oml:relationEntity , oml:hasTarget , diagram:parent , owl:topObjectProperty , oml:hasSource , diagram:target , oml:relationBase , oml:unit , owl:bottomObjectProperty , diagram:source , oml:measures ;
+        owl:inverseOf       owl:bottomObjectProperty .
+
+diagram:target  rdfs:subPropertyOf  owl:topObjectProperty , diagram:target .
+
+oml:hasSource  rdfs:subPropertyOf  owl:topObjectProperty , oml:hasSource .
+
+oml:Description  rdfs:subClassOf  owl:Thing , oml:Description .
+
+oml:hasTarget  rdfs:subPropertyOf  owl:topObjectProperty , oml:hasTarget .
+
+oml:RelationEntity  rdfs:subClassOf  owl:Thing , oml:RelationEntity .
+
+diagram:Compartment  rdfs:subClassOf  owl:Thing , diagram:Compartment .
+
+oml:Quantity  rdfs:subClassOf  owl:Thing , oml:Quantity .
+
+oml:dimension  rdfs:subPropertyOf  owl:topDataProperty , oml:dimension .

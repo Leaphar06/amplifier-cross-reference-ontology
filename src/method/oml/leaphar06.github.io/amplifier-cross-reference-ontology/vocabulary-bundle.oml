@@ -1,0 +1,6 @@
+@dc:title "Amplifier vocabulary bundle"
+@dc:description "Packages the amplifier vocabulary so disjointness closure fires between sibling concepts."
+vocabulary bundle <https://leaphar06.github.io/amplifier-cross-reference-ontology/vocabulary-bundle#> as amplifier-vbundle {
+    includes <http://purl.org/dc/elements/1.1/> as dc
+    includes <https://leaphar06.github.io/amplifier-cross-reference-ontology/vocabulary#>
+}

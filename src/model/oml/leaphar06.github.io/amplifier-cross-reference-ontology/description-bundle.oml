@@ -1,0 +1,7 @@
+@dc:title "Amplifier description bundle"
+@dc:description "Packages the amplifier instance data for reasoning against the closed vocabulary bundle."
+description bundle <https://leaphar06.github.io/amplifier-cross-reference-ontology/description-bundle#> as amplifier-dbundle {
+    uses <http://purl.org/dc/elements/1.1/> as dc
+    uses <https://leaphar06.github.io/amplifier-cross-reference-ontology/vocabulary-bundle#>
+    includes <https://leaphar06.github.io/amplifier-cross-reference-ontology/description#>
+}
