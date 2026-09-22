@@ -179,12 +179,4 @@ description <https://leaphar06.github.io/amplifier-cross-reference-ontology/desc
         amplifier:gapCount 1
         amplifier:derivedFrom pm3
     ]
-
-    @dc:description "Derives a partial-match classification when at least one parameter blocks a full match."
-    rule PartialMatchDerivation [
-        HighSpeedAmplifier(a) &
-        hasParameterMatch(a, m1) & FullParameterMatch(m1) &
-        hasParameterMatch(a, m2) & ParameterMatch(m2) & matches(m2, false)
-        -> PartialMatchReplacement(a)
-    ]
 }
