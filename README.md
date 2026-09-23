@@ -49,14 +49,7 @@ oml lint
 oml reason
 ```
 
-A successful run should report something like:
-
-```text
-lint: N OML file(s) checked.
-reason: N ontology file(s) checked via N import root(s)
-```
-
-with no errors.
+A successful run should report something with no errors.
 
 ## Status
 
