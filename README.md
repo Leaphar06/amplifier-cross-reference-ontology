@@ -22,7 +22,13 @@ src/
 │   ├── vocabulary.oml          # Concepts, properties, relations, the defined concept
 │   │                           # (FullMatchReplacement), and the PartialMatchDerivation rule
 │   └── vocabulary-bundle.oml   # Vocabulary bundle - closes the vocabulary for reasoning
-│                               # and enables disjointness between the match classifications
+│   │                           # and enables disjointness between the match classifications
+│   └── md/leaphar06.github.io/amplifier-cross-reference-ontology/
+│       ├── catalog.md              # Pattern 1
+│       ├── product-lines.md        # Pattern 2
+│       ├── parameter-matches.md    # Pattern 3 + both business rules
+│       ├── coverage-gaps.md        # Pattern 4
+│       └── METHOD.md
 └── model/oml/leaphar06.github.io/amplifier-cross-reference-ontology/
     ├── description.oml         # Instance data: TI parts, competitor parts, vendors,
     │                           # product lines, and per-parameter match results
@@ -49,14 +55,7 @@ oml lint
 oml reason
 ```
 
-A successful run should report something like:
-
-```text
-lint: N OML file(s) checked.
-reason: N ontology file(s) checked via N import root(s)
-```
-
-with no errors.
+A successful run should report something with no errors.
 
 ## Status
 
