@@ -1,0 +1,9 @@
+description <https://leaphar06.github.io/amplifier-cross-reference-ontology/coverage-gaps#> as amplifier-coverage-gaps {
+    uses <https://leaphar06.github.io/amplifier-cross-reference-ontology/vocabulary#> as amplifier
+    extends <https://leaphar06.github.io/amplifier-cross-reference-ontology/parameter-matches#> as parametermatches
+
+    instance gap1 : amplifier:CoverageGap [
+        amplifier:gapCount 1
+        amplifier:derivedFrom parametermatches:pm3
+    ]
+}

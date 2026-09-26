@@ -1,0 +1,28 @@
+description <https://leaphar06.github.io/amplifier-cross-reference-ontology/product-lines#> as amplifier-product-lines {
+    uses <https://leaphar06.github.io/amplifier-cross-reference-ontology/vocabulary#> as amplifier
+
+    instance HSAMPS_OPAMP : amplifier:ProductLine [
+        amplifier:productLineName "HSAMPS-OPAMP"
+    ]
+    instance HSAMPS : amplifier:ProductLine [
+        amplifier:productLineName "HSAMPS"
+        amplifier:hasSubLine HSAMPS_OPAMP
+    ]
+
+    instance OPA847 : amplifier:HighSpeedAmplifier [
+        amplifier:partNumber "OPA847"
+        amplifier:belongsToLine HSAMPS
+    ]
+    instance OPA842 : amplifier:HighSpeedAmplifier [
+        amplifier:partNumber "OPA842"
+        amplifier:belongsToLine HSAMPS
+    ]
+    instance OPA843 : amplifier:HighSpeedAmplifier [
+        amplifier:partNumber "OPA843"
+        amplifier:belongsToLine HSAMPS
+    ]
+    instance LMH6624 : amplifier:HighSpeedAmplifier [
+        amplifier:partNumber "LMH6624"
+        amplifier:belongsToLine HSAMPS_OPAMP
+    ]
+}

@@ -1,0 +1,23 @@
+description <https://leaphar06.github.io/amplifier-cross-reference-ontology/catalog#> as amplifier-catalog {
+    uses <https://leaphar06.github.io/amplifier-cross-reference-ontology/vocabulary#> as amplifier
+
+    instance ADI : amplifier:CompetitorVendor [ amplifier:vendorName "Analog Devices" ]
+    instance LinearTech : amplifier:CompetitorVendor [ amplifier:vendorName "Linear Technology" ]
+
+    instance LT1360 : amplifier:CompetitorAmplifier [
+        amplifier:partNumber "LT1360"
+        amplifier:belongsToVendor LinearTech
+    ]
+    instance LT1220 : amplifier:CompetitorAmplifier [
+        amplifier:partNumber "LT1220"
+        amplifier:belongsToVendor LinearTech
+    ]
+    instance AD8000 : amplifier:CompetitorAmplifier [
+        amplifier:partNumber "AD8000"
+        amplifier:belongsToVendor ADI
+    ]
+    instance AD8001 : amplifier:CompetitorAmplifier [
+        amplifier:partNumber "AD8001"
+        amplifier:belongsToVendor ADI
+    ]
+}
