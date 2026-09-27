@@ -24,16 +24,22 @@ src/
 │   └── vocabulary-bundle.oml   # Vocabulary bundle - closes the vocabulary for reasoning
 │   │                           # and enables disjointness between the match classifications
 │   └── md/leaphar06.github.io/amplifier-cross-reference-ontology/
-│       ├── catalog.md              # Pattern 1
-│       ├── product-lines.md        # Pattern 2
-│       ├── parameter-matches.md    # Pattern 3 + both business rules
-│       ├── coverage-gaps.md        # Pattern 4
+│       ├── catalog.md              # Pattern 1 template (Competitor Catalog + Vendors)
+│       ├── product-lines.md        # Pattern 2 template (Product Line + TI Amplifiers)
+│       ├── parameter-matches.md    # Pattern 3 template + both business rules
+│       ├── coverage-gaps.md        # Pattern 4 template
 │       └── METHOD.md
 └── model/oml/leaphar06.github.io/amplifier-cross-reference-ontology/
-    ├── description.oml         # Instance data: TI parts, competitor parts, vendors,
-    │                           # product lines, and per-parameter match results
-    └── description-bundle.oml  # Description bundle - packages the description for
-                                # reasoning against the closed vocabulary bundle
+    │   ├── catalog.oml              # CompetitorVendor, CompetitorAmplifier
+    │   ├── product-lines.oml        # ProductLine, HighSpeedAmplifier
+    │   ├── parameter-matches.oml    # Criterion instances, ThresholdPolicy, ParameterMatch
+    │   ├── coverage-gaps.oml        # CoverageGap
+    │   └── description-bundle.oml   # includes all four above
+    └── md/leaphar06.github.io/amplifier-cross-reference-ontology/
+        ├── Catalog.md               # compose instance, invokes catalog.md
+        ├── ProductLines.md          # compose instance, invokes product-lines.md
+        ├── ParameterMatches.md      # compose instance, invokes parameter-matches.md
+        └── CoverageGaps.md          # compose instance, invokes coverage-gaps.md
 ```
 
 The seven matching criteria are:
