@@ -16,9 +16,12 @@ template:
 ---
 # Parameter Matches
 
-A `ParameterMatch` is a single comparison: one competitor part, evaluated against one of the seven criteria, for one TI amplifier. This is where "full match" vs "partial match" actually gets decided, `matches` records the verdict, and `governedBy` records whose threshold policy made the call when the verdict isn't a clean measured pass/fail.
+Evaluate each competitor part against one of seven criteria for a given TI amplifier, and record whether it's a full or partial match. A failed match must name the threshold policy that governed the call.
 
-Two rules enforce that a failed match can't go unexplained: a `matches false` row must name the policy that governed it, and the same TI/competitor pair can't be evaluated twice against the same criterion.
+Two rules enforce that a failed match can't go unexplained: 
+A `matches false` row must name the policy that governed it, and the same TI/competitor pair can't be evaluated twice against the same criterion.
+Evaluate each competitor part against one of seven criteria for a given TI amplifier, and record whether it's a full or partial match. A failed match must name the threshold policy that governed the call.
+
 
 ```table-editor
 ---

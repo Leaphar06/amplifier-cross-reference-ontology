@@ -16,7 +16,7 @@ template:
 ---
 # TI Product Line
 
-Records which product line and sub-line each TI amplifier belongs to. `hasSubLine` runs parent to child, the same direction as `hasPort` in Fire Force, so this stays a flat table rather than risk an untested inverse-path combination.
+Record which product line and sub-line each TI amplifier belongs to, so a part can be traced back to the family it's positioned in.
 
 ```table-editor
 ---
