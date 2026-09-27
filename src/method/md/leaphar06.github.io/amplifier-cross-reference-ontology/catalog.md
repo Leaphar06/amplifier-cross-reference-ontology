@@ -26,16 +26,6 @@ columns: { this: { label: "Competitor Amplifier" } }
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix amplifier: <https://leaphar06.github.io/amplifier-cross-reference-ontology/vocabulary#> .
 
-amplifier:CompetitorVendorShape
-    a sh:NodeShape ;
-    sh:targetClass amplifier:CompetitorVendor ;
-    sh:property [
-        sh:path amplifier:vendorName ;
-        sh:name "Vendor Name" ;
-        sh:maxCount 1 ;
-    ] ;
-    .
-
 amplifier:CompetitorAmplifierShape
     a sh:NodeShape ;
     sh:targetClass amplifier:CompetitorAmplifier ;
@@ -50,6 +40,27 @@ amplifier:CompetitorAmplifierShape
         sh:path amplifier:partNumber ;
         sh:name "Part Number" ;
         sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    .
+```
+
+# Competitor Vendors
+List the vendors that compete against TI in this space.
+```table-editor
+---
+target: ${target}
+columns: { this: { label: "Vendor" } }
+---
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix amplifier: <https://leaphar06.github.io/amplifier-cross-reference-ontology/vocabulary#> .
+
+amplifier:CompetitorVendorShape
+    a sh:NodeShape ;
+    sh:targetClass amplifier:CompetitorVendor ;
+    sh:property [
+        sh:path amplifier:vendorName ;
+        sh:name "Vendor Name" ;
         sh:maxCount 1 ;
     ] ;
     .

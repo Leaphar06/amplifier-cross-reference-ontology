@@ -21,7 +21,7 @@ Record which product line and sub-line each TI amplifier belongs to, so a part c
 ```table-editor
 ---
 target: ${target}
-columns: { this: { label: "TI Amplifier" } }
+columns: { this: { label: "Product Line" } }
 ---
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix amplifier: <https://leaphar06.github.io/amplifier-cross-reference-ontology/vocabulary#> .
@@ -41,6 +41,18 @@ amplifier:ProductLineShape
         sh:class amplifier:ProductLine ;
     ] ;
     .
+```
+
+# TI Amplifiers
+
+List TI's high-speed amplifiers and which product line each one belongs to
+```table-editor
+---
+target: ${target}
+columns: { this: { label: "TI Amplifier" } }
+---
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix amplifier: <https://leaphar06.github.io/amplifier-cross-reference-ontology/vocabulary#> .
 
 amplifier:HighSpeedAmplifierShape
     a sh:NodeShape ;
