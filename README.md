@@ -16,7 +16,7 @@ A separate generative layer, not part of this repo, could later handle mapping d
 
 ## Where things live
 
-```text
+```plaintext
 src/
 ├── method/oml/leaphar06.github.io/amplifier-cross-reference-ontology/
 │   ├── vocabulary.oml          # Concepts, properties, relations, the defined concept
