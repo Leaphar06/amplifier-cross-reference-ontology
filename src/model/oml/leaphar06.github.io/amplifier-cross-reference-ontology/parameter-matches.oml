@@ -40,6 +40,7 @@ description <https://leaphar06.github.io/amplifier-cross-reference-ontology/para
         amplifier:comparesTo catalog:AD8000
         amplifier:evaluatesCriterion biasCrit
         amplifier:matches false
+        amplifier:governedBy policy1
     ]
     instance pm6 : amplifier:ParameterMatch [
         amplifier:comparesTo catalog:LT1220
@@ -55,6 +56,7 @@ description <https://leaphar06.github.io/amplifier-cross-reference-ontology/para
         amplifier:comparesTo catalog:LT1220
         amplifier:evaluatesCriterion packageCrit
         amplifier:matches false
+        amplifier:governedBy policy1
     ]
     instance pm9 : amplifier:ParameterMatch [
         amplifier:comparesTo catalog:LT1220
@@ -70,6 +72,7 @@ description <https://leaphar06.github.io/amplifier-cross-reference-ontology/para
         amplifier:comparesTo catalog:LT1220
         amplifier:evaluatesCriterion noiseCrit
         amplifier:matches false
+        amplifier:governedBy policy1
     ]
     instance pm12 : amplifier:ParameterMatch [
         amplifier:comparesTo catalog:LT1220
@@ -85,6 +88,7 @@ description <https://leaphar06.github.io/amplifier-cross-reference-ontology/para
         amplifier:comparesTo catalog:AD8001
         amplifier:evaluatesCriterion supplyCrit
         amplifier:matches false
+        amplifier:governedBy policy1
     ]
     instance pm15 : amplifier:ParameterMatch [
         amplifier:comparesTo catalog:AD8001
@@ -100,6 +104,7 @@ description <https://leaphar06.github.io/amplifier-cross-reference-ontology/para
         amplifier:comparesTo catalog:AD8001
         amplifier:evaluatesCriterion biasCrit
         amplifier:matches false
+        amplifier:governedBy policy1
     ]
     instance pm18 : amplifier:ParameterMatch [
         amplifier:comparesTo catalog:AD8001
