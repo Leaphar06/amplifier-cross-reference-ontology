@@ -1,0 +1,153 @@
+@dc:title "Cross-reference report generator"
+@dc:description "Generates a Markdown cross-reference report: competitor parts grouped by vendor, each TI part evaluated against them, its outcome, and the per-criterion evidence."
+description <https://leaphar06.github.io/amplifier-cross-reference-ontology/codegen/crossref-report#> as crossref {
+
+    uses <http://purl.org/dc/elements/1.1/> as dc
+    uses <http://opencaesar.io/codegen#> as codegen
+
+    instance CrossReferenceReportSpec : codegen:Spec [
+        codegen:construct """
+            PREFIX codegen:   <http://opencaesar.io/codegen#>
+            PREFIX amplifier: <https://leaphar06.github.io/amplifier-cross-reference-ontology/vocabulary#>
+            PREFIX xr:        <https://leaphar06.github.io/amplifier-cross-reference-ontology/codegen/crossref-report/graph#>
+            PREFIX templates: <https://leaphar06.github.io/amplifier-cross-reference-ontology/codegen/crossref-report#>
+
+            CONSTRUCT {
+                ?file a codegen:File ;
+                    codegen:path ?path ;
+                    codegen:template templates:CrossReferenceReportTemplate ;
+                    codegen:root ?report .
+
+                ?report a xr:Report ;
+                    xr:vendor ?vendor .
+
+                ?vendor a xr:Vendor ;
+                    xr:name ?vendorName ;
+                    xr:part ?comp .
+
+                ?comp a xr:CompetitorPart ;
+                    xr:name ?compName ;
+                    xr:pair ?pair .
+
+                ?pair a xr:Pair ;
+                    xr:ti ?tiName ;
+                    xr:outcome ?outcome ;
+                    xr:evaluated ?evaluated ;
+                    xr:row ?pm .
+
+                ?pm a xr:Row ;
+                    xr:criterion ?label ;
+                    xr:order ?order ;
+                    xr:result ?result ;
+                    xr:policy ?policyName .
+            }
+            WHERE {
+                BIND(IRI("urn:file:crossref-report") AS ?file)
+                BIND(IRI("urn:crossref:report") AS ?report)
+                BIND("${path}/CrossReferenceReport.md" AS ?path)
+
+                # One row per recorded ParameterMatch, with its criterion label and display order
+                VALUES (?ct ?label ?order) {
+                    (amplifier:GBWCriterion              "GBW"                1)
+                    (amplifier:SupplyVoltageCriterion    "Supply Voltage"     2)
+                    (amplifier:PackageCriterion          "Package"            3)
+                    (amplifier:SlewRateCriterion         "Slew Rate"          4)
+                    (amplifier:InputBiasCurrentCriterion "Input Bias Current" 5)
+                    (amplifier:NoiseDensityCriterion     "Noise Density"      6)
+                    (amplifier:TempGradeCriterion        "Temp Grade"         7)
+                }
+                ?ti amplifier:hasParameterMatch ?pm .
+                ?pm amplifier:comparesTo ?comp ;
+                    amplifier:evaluatesCriterion ?crit .
+                ?crit a ?ct .
+                ?comp amplifier:belongsToVendor ?vendor .
+
+                # Pair-level counts: criteria recorded and criteria failed
+                {
+                    SELECT ?ti ?comp (COUNT(DISTINCT ?pmx) AS ?n) (SUM(IF(BOUND(?mx) && ?mx = false, 1, 0)) AS ?fails)
+                    WHERE {
+                        ?ti amplifier:hasParameterMatch ?pmx .
+                        ?pmx amplifier:comparesTo ?comp .
+                        OPTIONAL { ?pmx amplifier:matches ?mx }
+                    }
+                    GROUP BY ?ti ?comp
+                }
+
+                # Missing values stay visible instead of dropping the row
+                OPTIONAL { ?pm amplifier:matches ?m }
+                OPTIONAL { ?pm amplifier:governedBy ?policy . ?policy amplifier:policyName ?pn }
+                OPTIONAL { ?ti amplifier:partNumber ?tiPN }
+                OPTIONAL { ?comp amplifier:partNumber ?compPN }
+                OPTIONAL { ?vendor amplifier:vendorName ?vn }
+
+                BIND(COALESCE(?tiPN, REPLACE(STR(?ti), "^.*[/#]", "")) AS ?tiName)
+                BIND(COALESCE(?compPN, REPLACE(STR(?comp), "^.*[/#]", "")) AS ?compName)
+                BIND(COALESCE(?vn, REPLACE(STR(?vendor), "^.*[/#]", "")) AS ?vendorName)
+                BIND(IRI(CONCAT("urn:crossref:pair:", ?tiName, ":", ?compName)) AS ?pair)
+                BIND(IF(!BOUND(?m), "Not recorded", IF(?m = true, "Pass", "Fail")) AS ?result)
+                BIND(COALESCE(?pn, "none") AS ?policyName)
+
+                # Same definition as the method's replacements.md view
+                BIND(IF(?fails > 0, "Partial", IF(?n < 7, "Incomplete", "Full")) AS ?outcome)
+                BIND(CONCAT(STR(?n), " of 7") AS ?evaluated)
+            }
+        """
+        codegen:parameter "path"
+    ]
+
+    instance CrossReferenceReportTemplate : codegen:Template [
+        codegen:body """
+            {%- set report = object(file, "codegen:root") -%}
+            {%- set summary = [] -%}
+            {%- set vendors = [] -%}
+            {%- for v in objects(report, "xr:vendor") -%}
+            {%- set parts = [] -%}
+            {%- for c in objects(v, "xr:part") -%}
+            {%- set pairs = [] -%}
+            {%- for p in objects(c, "xr:pair") -%}
+            {%- set rows = [] -%}
+            {%- set blocked = [] -%}
+            {%- for r in objects(p, "xr:row") -%}
+            {%- set added = rows.push({ order: "" + object(r, "xr:order"), criterion: object(r, "xr:criterion"), result: object(r, "xr:result"), policy: object(r, "xr:policy") }) -%}
+            {%- endfor -%}
+            {%- for r in rows | sort(false, true, "order") -%}
+            {%- if r.result == "Fail" -%}{%- set added = blocked.push(r.criterion) -%}{%- endif -%}
+            {%- endfor -%}
+            {%- set pair = { ti: "" + object(p, "xr:ti"), outcome: object(p, "xr:outcome"), evaluated: object(p, "xr:evaluated"), blocked: (blocked | join(", ")) or "none", rows: rows } -%}
+            {%- set added = pairs.push(pair) -%}
+            {%- set added = summary.push({ key: object(v, "xr:name") + "|" + object(c, "xr:name") + "|" + pair.ti, vendor: object(v, "xr:name"), part: object(c, "xr:name"), pair: pair }) -%}
+            {%- endfor -%}
+            {%- set added = parts.push({ name: "" + object(c, "xr:name"), pairs: pairs }) -%}
+            {%- endfor -%}
+            {%- set added = vendors.push({ name: "" + object(v, "xr:name"), parts: parts }) -%}
+            {%- endfor -%}
+            # Cross-Reference Report
+
+            Generated from the model by `CrossReferenceReportSpec`. A pair is **Full** only when all 7 criteria are recorded and none fail, **Partial** when at least one criterion fails, and **Incomplete** when nothing has failed but fewer than 7 criteria are recorded.
+
+            ## Summary
+
+            | Vendor | Competitor part | TI part | Outcome | Evaluated | Blocked by |
+            | ------ | --------------- | ------- | ------- | --------- | ---------- |
+            {% for s in summary | sort(false, true, "key") -%}
+            | {{ s.vendor }} | {{ s.part }} | {{ s.pair.ti }} | {{ s.pair.outcome }} | {{ s.pair.evaluated }} | {{ s.pair.blocked }} |
+            {% endfor %}
+            Total pairs: {{ summary.length }}
+            {% for v in vendors | sort(false, true, "name") %}
+            ## {{ v.name }}
+            {% for c in v.parts | sort(false, true, "name") %}
+            ### {{ c.name }}
+            {% for p in c.pairs | sort(false, true, "ti") %}
+            **{{ p.ti }}**: {{ p.outcome }} ({{ p.evaluated }} criteria recorded; blocked by: {{ p.blocked }})
+
+            | Criterion | Result | Threshold policy |
+            | --------- | ------ | ---------------- |
+            {% for r in p.rows | sort(false, true, "order") -%}
+            | {{ r.criterion }} | {{ r.result }} | {{ r.policy }} |
+            {% endfor %}
+            {% endfor %}
+            {%- endfor %}
+            {%- endfor %}
+        """
+    ]
+}

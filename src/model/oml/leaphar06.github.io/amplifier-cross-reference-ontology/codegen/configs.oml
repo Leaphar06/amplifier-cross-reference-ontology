@@ -1,0 +1,10 @@
+description <https://leaphar06.github.io/amplifier-cross-reference-ontology/codegen/configs#> as configs {
+    uses <http://opencaesar.io/codegen#> as codegen
+    extends <https://leaphar06.github.io/amplifier-cross-reference-ontology/codegen/crossref-report#> as crossref
+
+    instance crossrefReport : codegen:Config [
+        codegen:spec crossref:CrossReferenceReportSpec
+        codegen:context "https://leaphar06.github.io/amplifier-cross-reference-ontology/description-bundle"
+        codegen:binding [ codegen:key "path" codegen:value "build/docs" ]
+    ]
+}
