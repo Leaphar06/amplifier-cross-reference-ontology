@@ -1,5 +1,8 @@
 # amplifier-cross-reference-ontology
 
+[![Release](https://img.shields.io/github/v/release/Leaphar06/amplifier-cross-reference-ontology)](https://github.com/Leaphar06/amplifier-cross-reference-ontology/releases/latest)
+[![Live Site](https://img.shields.io/badge/Live-Site-brightgreen)](https://leaphar06.github.io/amplifier-cross-reference-ontology/)
+
 Ontology-based model for evaluating TI amplifier replacements for competitor parts. It classifies matches as full, partial, or no match and captures the engineering criteria behind those decisions.
 
 ## What this system does
