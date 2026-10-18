@@ -3,7 +3,7 @@ description <https://leaphar06.github.io/amplifier-cross-reference-ontology/para
     extends <https://leaphar06.github.io/amplifier-cross-reference-ontology/catalog#> as catalog
     extends <https://leaphar06.github.io/amplifier-cross-reference-ontology/product-lines#> as productlines
 
-    instance gbwCrit : amplifier:GBWCriterion
+    instance gbwCrit : amplifier:GBWCriterion, amplifier:SlewRateCriterion
     instance supplyCrit : amplifier:SupplyVoltageCriterion
     instance packageCrit : amplifier:PackageCriterion
     instance slewCrit : amplifier:SlewRateCriterion
@@ -29,6 +29,7 @@ description <https://leaphar06.github.io/amplifier-cross-reference-ontology/para
         amplifier:comparesTo catalog:LT1360
         amplifier:evaluatesCriterion packageCrit
         amplifier:matches false
+        amplifier:governedBy policy1
     ]
     instance pm4 : amplifier:ParameterMatch [
         amplifier:comparesTo catalog:AD8000
