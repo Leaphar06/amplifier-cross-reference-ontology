@@ -432,3 +432,6 @@ FodyWeavers.xsd
 # OML build outputs
 build/dist/
 build/docs/
+
+# Rendered site (published by CD, never committed)
+build/web/

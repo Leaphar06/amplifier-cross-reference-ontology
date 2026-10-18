@@ -20,3 +20,4 @@ pack:
 # oml-cli parameter defaults
 defaults:
   pack: -o build/dist
+  render: -m src/model/md -b build/web -c src/model/oml/leaphar06.github.io/amplifier-cross-reference-ontology/description-bundle.oml
