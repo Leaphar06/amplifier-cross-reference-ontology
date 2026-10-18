@@ -5,7 +5,7 @@ oml-code:
 # project npm settings
 project:
   name: "@leaphar06/amplifier-cross-reference-method"
-  version: 0.2.0
+  version: 1.0.0
   title: Amplifier Cross Reference Method
   description: Vocabulary, editor templates, analysis views, and a cross-reference report generator for classifying TI amplifier replacements.
 
