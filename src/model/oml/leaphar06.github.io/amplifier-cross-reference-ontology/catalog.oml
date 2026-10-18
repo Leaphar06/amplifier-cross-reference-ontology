@@ -10,7 +10,7 @@ description <https://leaphar06.github.io/amplifier-cross-reference-ontology/cata
     ]
     instance LT1220 : amplifier:CompetitorAmplifier [
         amplifier:partNumber "LT1220"
-        amplifier:belongsToVendor LinearTechnology
+        amplifier:belongsToVendor LinearTech
     ]
     instance AD8000 : amplifier:CompetitorAmplifier [
         amplifier:partNumber "AD8000"

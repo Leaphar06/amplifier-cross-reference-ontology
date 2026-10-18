@@ -29,7 +29,6 @@ description <https://leaphar06.github.io/amplifier-cross-reference-ontology/para
         amplifier:comparesTo catalog:LT1360
         amplifier:evaluatesCriterion packageCrit
         amplifier:matches false
-        amplifier:governedBy policy1
     ]
     instance pm4 : amplifier:ParameterMatch [
         amplifier:comparesTo catalog:AD8000
